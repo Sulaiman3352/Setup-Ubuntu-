@@ -10,11 +10,12 @@ sudo snap remove --purge gtk-common-themes
 sudo snap remove --purge snapd-desktop-integration
 echo "what is the version of gnome?"
 read gnome
-sudo snap remove --purge gnome*
+sudo snap remove --purge $gnome
 sudo snap remove --purge bare
+sudo snap remove --purge firmware-updater
 echo "what is the version of core?"
 read core
-sudo snap remove --purge core*
+sudo snap remove --purge $core
 
 echo "removing snapd... "
 sudo snap remove --purge snapd
@@ -42,6 +43,6 @@ echo "Final touch"
 
 echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 
-touch /etc/apt/preferences.d/mozillateamppa && echo "Package: firefox*
+touch /etc/apt/preferences.d/mozillateamppa && sudo echo "Package: firefox*
 Pin: release o=LP-PPA-mozillateam
 Pin-Priority: 501" > /etc/apt/preferences.d/mozillateamppa
